@@ -1,4 +1,4 @@
 export type UpdateZombieDto = {
   name: string;
-  createdDate: string;
+  createdAt: string;
 };

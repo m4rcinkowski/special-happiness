@@ -23,9 +23,9 @@ A list of things not done due to a lack of time:
 
 * acceptance criteria
   * CRUD of items
-  * whole item management thing
   * currency rate system integration
 * redis implementation
 * e2e tests
 * documentation endpoint with the API contract
+* CI pipeline automating the testing process - Gitlab-CI or Github Actions
 

@@ -26,8 +26,8 @@ export class InMemoryZombieRepository extends ZombieRepository {
   }
 
   async update(id: string, payload: UpdateZombieDto): Promise<void> {
-    const { name, createdDate } = payload;
-    const newItem = new Zombie(id, name, createdDate);
+    const { name, createdAt } = payload;
+    const newItem = new Zombie(id, name, createdAt);
 
     this.items = this.items.filter((item) => id !== item.getId());
     this.items.push(newItem);
