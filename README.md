@@ -16,3 +16,16 @@ The app will be available at http://localhost:3000/.
 
 * Docker
 * docker-compose
+
+## TODO
+
+A list of things not done due to a lack of time:
+
+* acceptance criteria
+  * CRUD of items
+  * whole item management thing
+  * currency rate system integration
+* redis implementation
+* e2e tests
+* documentation endpoint with the API contract
+
