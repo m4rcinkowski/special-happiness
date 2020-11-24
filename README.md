@@ -29,10 +29,9 @@ The app will be available at http://localhost:3000/.
 A list of things not done due to a lack of time:
 
 * acceptance criteria
-  * CxxD of items
   * currency rate system integration
-* redis implementation
 * input validation (Nest pipes)
+* error handling (cases where exchange item does not exist etc.)
 * generic pagination (Nest middleware?)
 * error to response mapping (stable structure with e.g. validation error message)
 * documentation endpoint with the API contract

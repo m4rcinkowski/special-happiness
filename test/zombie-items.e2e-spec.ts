@@ -8,10 +8,13 @@ import { ItemsRepository } from '../src/zombies/repository/ItemsRepository';
 import { InMemoryItemsRepository } from '../src/zombies/repository/InMemoryItemsRepository';
 import { Item } from '../src/zombies/domain/Item';
 import { AddItemToZombieDto } from '../src/zombies/dto/AddItemToZombieDto';
+import { ItemExchangeService } from '../src/zombies/service/ItemExchangeService';
+import { InMemoryItemExchangeService } from '../src/zombies/service/InMemoryItemExchangeService';
 
 describe('ZombieItemsController (e2e)', () => {
   let app: INestApplication;
   let repository: InMemoryItemsRepository;
+  let exchangeService: InMemoryItemExchangeService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -19,7 +22,11 @@ describe('ZombieItemsController (e2e)', () => {
       providers: [
         {
           provide: ItemsRepository,
-          useValue: InMemoryItemsRepository,
+          useClass: InMemoryItemsRepository,
+        },
+        {
+          provide: ItemExchangeService,
+          useClass: InMemoryItemExchangeService,
         },
       ],
     }).compile();
@@ -27,6 +34,7 @@ describe('ZombieItemsController (e2e)', () => {
     repository = moduleFixture.get<ItemsRepository, InMemoryItemsRepository>(
       ItemsRepository,
     );
+    exchangeService = moduleFixture.get(ItemExchangeService);
     app = moduleFixture.createNestApplication();
     await app.init();
   });
@@ -68,7 +76,15 @@ describe('ZombieItemsController (e2e)', () => {
     ).toHaveLength(0);
   });
 
-  it("Should successfully ad an item to zombie's inventory", async () => {
+  it("Should successfully add an item to zombie's inventory", async () => {
+    await exchangeService.setItems([
+      {
+        id: 42,
+        name: 'Better axe',
+        price: 200,
+      },
+    ]);
+
     await request(app.getHttpServer())
       .post('/zombies/58f2e892-5425-4c68-8ec8-907c9c4161f2/items')
       .send({
@@ -80,6 +96,10 @@ describe('ZombieItemsController (e2e)', () => {
       '58f2e892-5425-4c68-8ec8-907c9c4161f2',
     );
     expect(items).toHaveLength(1);
-    expect(items.shift()).toMatchObject({ id: 42 });
+    expect(items.shift()).toMatchObject({
+      id: 42,
+      name: 'Better axe',
+      price: 200,
+    });
   });
 });

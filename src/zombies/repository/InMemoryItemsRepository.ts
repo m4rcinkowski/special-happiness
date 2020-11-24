@@ -6,9 +6,7 @@ const ITEMS_LIMIT = 5;
 type Items = Map<string, Item[]>;
 
 export class InMemoryItemsRepository extends ItemsRepository {
-  constructor(private items: Items = new Map()) {
-    super();
-  }
+  private items: Items = new Map();
 
   async create(parentId: string, item: Item): Promise<void> {
     const items = this.items.get(parentId) || [];

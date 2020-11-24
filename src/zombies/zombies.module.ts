@@ -10,6 +10,8 @@ import { InMemoryZombieRepository } from './repository/InMemoryZombieRepository'
 import { ZombieItemsController } from './zombie-items.controller';
 import { ItemsRepository } from './repository/ItemsRepository';
 import { InMemoryItemsRepository } from './repository/InMemoryItemsRepository';
+import { ItemExchangeService } from './service/ItemExchangeService';
+import { InMemoryItemExchangeService } from './service/InMemoryItemExchangeService';
 
 @Module({
   imports: [CqrsModule],
@@ -26,6 +28,10 @@ import { InMemoryItemsRepository } from './repository/InMemoryItemsRepository';
     {
       provide: ItemsRepository,
       useClass: InMemoryItemsRepository,
+    },
+    {
+      provide: ItemExchangeService,
+      useClass: InMemoryItemExchangeService,
     },
     ...CommandHandlers,
     ...QueryHandlers,
