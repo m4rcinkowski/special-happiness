@@ -89,7 +89,7 @@ describe('ZombiesController (e2e)', () => {
 
     return request(app.getHttpServer())
       .delete('/zombies/fae9263f-1afe-422b-953c-d519a8dad35e')
-      .expect(200);
+      .expect(204);
   });
 
   it('Should successfully update a zombie', async () => {

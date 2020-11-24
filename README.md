@@ -21,6 +21,8 @@ The app will be available at http://localhost:3000/.
 
 1. Does the list of zombies need to be paginated? In other words, how many zombies should be diplayed at once if not all of them?
 1. Which zombie properties can be altered? (e.g. creation date?)
+1. What happens if we try to add the sixth item? Should it fail or maybe some other (random) item should pop out of the inventory?
+1. How items are going to be displayed? At once, after selecting an individual zombie or inventory gets an additional click?
 
 ## TODO
 

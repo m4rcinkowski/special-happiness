@@ -7,10 +7,13 @@ import { IdGenerator } from '../common/IdGenerator';
 import { UuidGenerator } from '../common/UuidGenerator';
 import { ZombieRepository } from './repository/ZombieRepository';
 import { InMemoryZombieRepository } from './repository/InMemoryZombieRepository';
+import { ZombieItemsController } from './zombie-items.controller';
+import { ItemsRepository } from './repository/ItemsRepository';
+import { InMemoryItemsRepository } from './repository/InMemoryItemsRepository';
 
 @Module({
   imports: [CqrsModule],
-  controllers: [ZombiesController],
+  controllers: [ZombiesController, ZombieItemsController],
   providers: [
     {
       provide: IdGenerator,
@@ -19,6 +22,10 @@ import { InMemoryZombieRepository } from './repository/InMemoryZombieRepository'
     {
       provide: ZombieRepository,
       useClass: InMemoryZombieRepository,
+    },
+    {
+      provide: ItemsRepository,
+      useClass: InMemoryItemsRepository,
     },
     ...CommandHandlers,
     ...QueryHandlers,

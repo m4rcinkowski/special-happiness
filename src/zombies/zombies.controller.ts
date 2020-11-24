@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateZombieDto } from './dto/CreateZombieDto';
@@ -24,6 +25,7 @@ export class ZombiesController {
   ) {}
 
   @Post()
+  @HttpCode(201)
   create(@Body() createZombieDto: CreateZombieDto) {
     return this.commandBus.execute(new CreateZombie(createZombieDto));
   }
@@ -47,6 +49,7 @@ export class ZombiesController {
   }
 
   @Delete(':zombieId')
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.commandBus.execute(new DeleteZombie(id));
   }
