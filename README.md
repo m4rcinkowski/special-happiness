@@ -30,9 +30,11 @@ A list of things not done due to a lack of time:
   * CxxD of items
   * currency rate system integration
 * redis implementation
-* input validation (middleware? pipes?)
-* generic pagination (middleware?)
+* input validation (Nest pipes)
+* generic pagination (Nest middleware?)
 * error to response mapping (stable structure with e.g. validation error message)
 * documentation endpoint with the API contract
+* e2e tests validating OpenAPI schemas for both requests and responses
+* API versioning with separate e2e test suite for every version
 * CI pipeline automating the testing process - Gitlab-CI or Github Actions
 

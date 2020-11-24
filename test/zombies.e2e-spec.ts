@@ -34,7 +34,7 @@ describe('ZombiesController (e2e)', () => {
   it('Returns a JSON response', () => {
     return request(app.getHttpServer())
       .get('/zombies')
-      .expect('content-type', 'application/json; charset=utf-8');
+      .expect('content-type', /application\/json/);
   });
 
   it('Should return a list of zombies', async () => {
