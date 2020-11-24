@@ -17,15 +17,22 @@ The app will be available at http://localhost:3000/.
 * Docker
 * docker-compose
 
+## Questions to Product Owner
+
+1. Does the list of zombies need to be paginated? In other words, how many zombies should be diplayed at once if not all of them?
+1. Which zombie properties can be altered? (e.g. creation date?)
+
 ## TODO
 
 A list of things not done due to a lack of time:
 
 * acceptance criteria
-  * CRUD of items
+  * CxxD of items
   * currency rate system integration
 * redis implementation
-* e2e tests
+* input validation (middleware? pipes?)
+* generic pagination (middleware?)
+* error to response mapping (stable structure with e.g. validation error message)
 * documentation endpoint with the API contract
 * CI pipeline automating the testing process - Gitlab-CI or Github Actions
 

@@ -32,4 +32,8 @@ export class InMemoryZombieRepository extends ZombieRepository {
     this.items = this.items.filter((item) => id !== item.getId());
     this.items.push(newItem);
   }
+
+  async setItems(items: Zombie[]): Promise<void> {
+    this.items = items;
+  }
 }

@@ -33,17 +33,20 @@ export class ZombiesController {
     return this.queryBus.execute(new ListZombies());
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':zombieId')
+  findOne(@Param('zombieId') id: string) {
     return this.queryBus.execute(new GetZombie(id));
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateZombieDto: UpdateZombieDto) {
+  @Put(':zombieId')
+  update(
+    @Param('zombieId') id: string,
+    @Body() updateZombieDto: UpdateZombieDto,
+  ) {
     return this.commandBus.execute(new UpdateZombie(id, updateZombieDto));
   }
 
-  @Delete(':id')
+  @Delete(':zombieId')
   remove(@Param('id') id: string) {
     return this.commandBus.execute(new DeleteZombie(id));
   }
