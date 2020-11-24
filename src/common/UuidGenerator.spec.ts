@@ -7,7 +7,8 @@ describe('UuidGenerator', () => {
   it('Should return an ID as string', () => {
     jest.spyOn(uuid, 'v4').mockReturnValue('dummy-uuid4');
     const generator = new UuidGenerator();
+    const result = generator.generateId();
 
-    expect(generator.generateId()).toEqual('dummy-uuid4');
+    expect(result).toEqual('dummy-uuid4');
   });
 });

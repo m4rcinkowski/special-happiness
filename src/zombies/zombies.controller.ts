@@ -16,7 +16,7 @@ import { UpdateZombieDto } from './dto/UpdateZombieDto';
 import { UpdateZombie } from './command/UpdateZombie';
 import { DeleteZombie } from './command/DeleteZombie';
 
-@Controller('zombies')
+@Controller('/')
 export class ZombiesController {
   constructor(
     private readonly commandBus: CommandBus,
