@@ -32,7 +32,7 @@ export class ZombieItemsController {
   }
 
   @Get(':zombieId/items')
-  findAll(@Param('zombieId') id: string) {
+  getAll(@Param('zombieId') id: string) {
     return this.queryBus.execute(new ListZombieItems(id));
   }
 

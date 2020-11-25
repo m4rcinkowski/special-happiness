@@ -12,6 +12,7 @@ import { CreateZombieDto } from '../src/zombies/dto/CreateZombieDto';
 describe('ZombiesController (e2e)', () => {
   let app: INestApplication;
   let repository: InMemoryZombieRepository;
+  const createdAt = new Date('2015-02-24').toISOString();
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -39,23 +40,24 @@ describe('ZombiesController (e2e)', () => {
 
   it('Should return a list of zombies', async () => {
     await repository.setItems([
-      new Zombie(
-        'fae9263f-1afe-422b-953c-d519a8dad35e',
-        'Kuba',
-        new Date('2015-02-24').toISOString(),
-      ),
+      new Zombie('fae9263f-1afe-422b-953c-d519a8dad35e', 'Kuba', createdAt),
     ]);
 
     return request(app.getHttpServer())
       .get('/zombies')
       .expect(200)
-      .expect((response) => (response.body as Zombie[]).length === 1);
+      .expect([
+        {
+          id: 'fae9263f-1afe-422b-953c-d519a8dad35e',
+          name: 'Kuba',
+          createdAt,
+        },
+      ]);
   });
 
   it('Should return details of a zombie', async () => {
-    const creationDate = new Date('2015-02-24').toISOString();
     await repository.setItems([
-      new Zombie('2a092d43-02a2-4790-8867-0f5e9922fe08', 'Kuba', creationDate),
+      new Zombie('2a092d43-02a2-4790-8867-0f5e9922fe08', 'Kuba', createdAt),
     ]);
 
     return request(app.getHttpServer())
@@ -64,7 +66,7 @@ describe('ZombiesController (e2e)', () => {
       .expect({
         id: '2a092d43-02a2-4790-8867-0f5e9922fe08',
         name: 'Kuba',
-        createdAt: creationDate,
+        createdAt,
       });
   });
 

@@ -12,6 +12,9 @@ import { ItemsRepository } from './repository/ItemsRepository';
 import { InMemoryItemsRepository } from './repository/InMemoryItemsRepository';
 import { ItemExchangeService } from './service/ItemExchangeService';
 import { InMemoryItemExchangeService } from './service/InMemoryItemExchangeService';
+import { TotalValueCalculationService } from './service/TotalValueCalculationService';
+import { CurrencyRateService } from './service/CurrencyRateService';
+import { InMemoryCurrencyRateService } from './service/InMemoryCurrencyRateService';
 
 @Module({
   imports: [CqrsModule, CacheModule.register()],
@@ -33,6 +36,11 @@ import { InMemoryItemExchangeService } from './service/InMemoryItemExchangeServi
       provide: ItemExchangeService,
       useClass: InMemoryItemExchangeService,
     },
+    {
+      provide: CurrencyRateService,
+      useClass: InMemoryCurrencyRateService,
+    },
+    TotalValueCalculationService,
     ...CommandHandlers,
     ...QueryHandlers,
   ],

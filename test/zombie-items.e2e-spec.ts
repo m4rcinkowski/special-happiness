@@ -56,7 +56,20 @@ describe('ZombieItemsController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/zombies/1c67439f-f1e7-474b-b183-16a6b5497f90/items')
       .expect(200)
-      .expect((response) => (response.body as Item[]).length === 1);
+      .expect({
+        items: [
+          {
+            id: 42,
+            name: 'Axe',
+            price: 100,
+          },
+        ],
+        totalValue: [
+          { currency: 'PLN', amount: 100 },
+          { currency: 'EUR', amount: 400 },
+          { currency: 'USD', amount: 300 },
+        ],
+      });
   });
 
   it('Should delete an item from a zombie', async () => {

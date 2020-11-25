@@ -1,6 +1,6 @@
 # Zombies
 
-REST API serving as a CRUD for Zombie collection and managing their items.
+REST API serving as a CRUD for Zombie collection and managing their items. Uses the CQRS pattern for state management.
 
 ## Usage
 
@@ -11,6 +11,18 @@ docker-compose up
 ```
 
 The app will be available at http://localhost:3000/.
+
+List of all implemented endpoints:
+
+* `{/zombies, POST}`
+* `{/zombies, GET}`
+* `{/zombies/:zombieId, GET}`
+* `{/zombies/:zombieId, PUT}`
+* `{/zombies/:zombieId, DELETE}`
+* `{/zombies}`
+* `{/zombies/:zombieId/items, POST}`
+* `{/zombies/:zombieId/items, GET}`
+* `{/zombies/:zombieId/items/:itemId, DELETE}`
 
 ### Prerequisites
 
@@ -28,14 +40,22 @@ The app will be available at http://localhost:3000/.
 
 A list of things not done due to a lack of time:
 
-* acceptance criteria
-  * currency rate system integration
-* input validation (Nest pipes)
+* HTTP implementations of item exchange and currency rates services
+  * Nest HTTP module
+  * Base URIs as environment variables
+* input validation
+  * Nest pipes
 * error handling (cases where exchange item does not exist etc.)
-* generic pagination (Nest middleware?)
 * error to response mapping (stable structure with e.g. validation error message)
 * documentation endpoint with the API contract
+  * Nest Swagger
+* extract some services and entities into common module
+  * e.g. CurrencyRateService, Price
 * e2e tests validating OpenAPI schemas for both requests and responses
 * API versioning with separate e2e test suite for every version
-* CI pipeline automating the testing process - Gitlab-CI or Github Actions
+* redis implementation of a cache manager
+* generic pagination
+* better code coverage
+* CI pipeline automating the testing process
+  * Gitlab-CI or Github Actions
 
