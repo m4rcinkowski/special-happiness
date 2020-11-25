@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ZombiesController } from './zombies.controller';
 import { CommandHandlers } from './command';
@@ -14,7 +14,7 @@ import { ItemExchangeService } from './service/ItemExchangeService';
 import { InMemoryItemExchangeService } from './service/InMemoryItemExchangeService';
 
 @Module({
-  imports: [CqrsModule],
+  imports: [CqrsModule, CacheModule.register()],
   controllers: [ZombiesController, ZombieItemsController],
   providers: [
     {

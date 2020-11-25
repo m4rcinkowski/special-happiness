@@ -1,5 +1,5 @@
-import { ExchangeItem } from '../dto/ExchangeItem';
+import { ExchangeItemsList } from '../dto/ExchangeItemsList';
 
 export abstract class ItemExchangeService {
-  abstract getAll(): Promise<ExchangeItem[]>;
+  abstract getAll(): Promise<ExchangeItemsList>;
 }

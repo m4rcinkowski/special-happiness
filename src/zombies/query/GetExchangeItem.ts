@@ -1,5 +1,8 @@
 import { IQuery } from '@nestjs/cqrs';
 
 export class GetExchangeItem implements IQuery {
-  constructor(public id: number) {}
+  constructor(
+    public readonly id: number,
+    public readonly forDate: Date = new Date(),
+  ) {}
 }
